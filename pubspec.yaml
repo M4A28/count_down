@@ -1,0 +1,63 @@
+name: count_down
+description: "تطبيق العد التنازلي - Countdown Timer App"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  cupertino_icons: ^1.0.8
+  # State Management
+  provider: ^6.1.2
+  # Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  # Notifications
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.10.0
+  # Sharing
+  share_plus: ^12.0.2
+  screenshot: ^3.0.0
+  path_provider: ^2.1.4
+  # Image
+  image_picker: ^1.1.2
+  # CSV
+  csv: ^6.0.0
+  # Unique IDs
+  uuid: ^4.5.1
+  # Home Widget
+  home_widget: ^0.7.0
+  # File Picker
+  file_picker: ^8.1.6
+  # Keep screen awake
+  wakelock_plus: ^1.2.8
+  # URL Launcher
+  url_launcher: ^6.3.1
+  # Permission handler
+  permission_handler: ^11.3.1
+  # Google Fonts
+  google_fonts: ^6.2.1
+  path: ^1.9.1
+  flutter_gen: ^5.9.0
+  flutter_launcher_icons: ^0.14.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.13
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/sounds/
+    - assets/images/
