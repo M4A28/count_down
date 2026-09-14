@@ -15,7 +15,6 @@ key.properties
 migrate_working_dir/
 android/key.properties
 android/keystore/
-*.jks
 *.keystore
 # IntelliJ related
 *.iml
