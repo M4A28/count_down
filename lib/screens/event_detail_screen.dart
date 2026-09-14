@@ -280,14 +280,16 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
     final progress = event.progressPercentage;
     final pct = (progress * 100).toInt();
     String? motivational;
-    if (pct >= 100)
-      motivational = l10n.motivational100;
-    else if (pct >= 90)
-      motivational = l10n.motivational90;
-    else if (pct >= 75)
-      motivational = l10n.motivational75;
-    else if (pct >= 50)
-      motivational = l10n.motivationalHalf;
+    switch (pct) {
+      case >= 100:
+        motivational = l10n.motivational100;
+      case >= 90:
+        motivational = l10n.motivational90;
+      case >= 75:
+        motivational = l10n.motivational75;
+      case >= 50:
+        motivational = l10n.motivationalHalf;
+    }
 
     return Column(
       children: [

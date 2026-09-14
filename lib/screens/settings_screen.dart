@@ -334,14 +334,10 @@ class SettingsScreen extends StatelessWidget {
     // ألوان نابضة (Accent Colors)
     0xFF00E676, // أخضر نابض
     0xFF2979FF, // أزرق نابض
-    0xFFF50057, // وردي حاد
-    0xFFFF3D00, // برتقالي حاد
     0xFFD500F9, // بنفسجي فوشيا
     0xFF00E5FF, // سماوي نابض
     // ألوان دافئة
     0xFFFFC107, // عنبري
-    0xFFFF5722, // برتقالي محمر
-    0xFF8BC34A, // أخضر ليموني
     0xFF3F51B5, // نيلي
     // ألوان هادئة / فاتحة
     0xFF26C6DA, // سماوي فاتح

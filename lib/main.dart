@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:count_down/l10n/app_localizations.dart';
@@ -21,6 +20,9 @@ void main() async {
   );
 
   runApp(const CountdownApp());
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    NotificationService().requestPermissions();
+  });
 }
 
 class CountdownApp extends StatelessWidget {

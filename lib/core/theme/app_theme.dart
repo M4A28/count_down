@@ -201,7 +201,7 @@ class PresetTheme {
       nameAr: 'موعد',
       primaryColor: Color.fromARGB(255, 232, 183, 227),
       secondaryColor: Color.fromARGB(255, 178, 11, 184),
-      icon: Icons.favorite_rounded,
+      icon: Icons.alarm_rounded,
       gradientColors: [
         Color.fromARGB(255, 229, 183, 232),
         Color.fromARGB(255, 212, 116, 212),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:count_down/l10n/app_localizations.dart';
 import '../providers/events_provider.dart';
-import '../providers/settings_provider.dart';
 import '../widgets/event_card.dart';
 import 'add_edit_event_screen.dart';
 import 'event_detail_screen.dart';

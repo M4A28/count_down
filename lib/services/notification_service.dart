@@ -5,6 +5,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../models/event_model.dart';
 import '../models/reminder_model.dart';
 import 'hive_service.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
@@ -20,6 +21,9 @@ class NotificationService {
     if (_isInitialized) return;
 
     tz.initializeTimeZones();
+
+    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZoneName));
 
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/launcher_icon');
@@ -62,7 +66,12 @@ class NotificationService {
             AndroidFlutterLocalNotificationsPlugin
           >();
       await androidImplementation?.requestNotificationsPermission();
-      await androidImplementation?.requestExactAlarmsPermission();
+      final bool? canScheduleExact = await androidImplementation
+          ?.canScheduleExactNotifications();
+
+      if (canScheduleExact == false) {
+        await androidImplementation?.requestExactAlarmsPermission();
+      }
     }
   }
 
@@ -89,7 +98,7 @@ class NotificationService {
       if (scheduleTime.isBefore(DateTime.now())) continue;
 
       final tzScheduleTime = tz.TZDateTime.from(scheduleTime, tz.local);
-      final notificationId = reminder.id.hashCode;
+      final notificationId = _stableId(reminder.id);
       final locale = HiveService.getSettings().locale;
       final isAr = locale == 'ar';
 
@@ -144,6 +153,15 @@ class NotificationService {
     }
     final days = minutes ~/ 1440;
     return isAr ? '$days يوم' : '$days day';
+  }
+
+  int _stableId(String id) {
+    var hash = 0x811c9dc5;
+    for (final code in id.codeUnits) {
+      hash ^= code;
+      hash = (hash * 0x01000193) & 0xFFFFFFFF;
+    }
+    return hash & 0x7FFFFFFF; // رقم موجب ضمن 32-bit
   }
 
   NotificationDetails _notificationDetails() {
