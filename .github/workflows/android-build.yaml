@@ -1,0 +1,130 @@
+name: Android Build
+
+on:
+  push:
+    branches:
+      - main
+
+    paths:
+      - "flutter_app/**"
+      - "kotlin_app/**"
+      - ".github/workflows/android-build.yml"
+
+  pull_request:
+    branches:
+      - main
+
+    paths:
+      - "flutter_app/**"
+      - "kotlin_app/**"
+
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Select application to build"
+        required: true
+        type: choice
+        default: both
+        options:
+          - flutter
+          - kotlin
+          - both
+
+jobs:
+  # ==========================================
+  # DETECT CHANGES
+  # ==========================================
+
+  changes:
+    name: Detect Changed Projects
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      flutter: ${{ steps.filter.outputs.flutter }}
+      kotlin: ${{ steps.filter.outputs.kotlin }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: filter
+
+        with:
+          filters: |
+
+            flutter:
+              - 'flutter_app/**'
+
+            kotlin:
+              - 'kotlin_app/**'
+
+  # ==========================================
+  # FLUTTER BUILD
+  # ==========================================
+
+  flutter:
+    name: Build Flutter
+
+    needs: changes
+
+    runs-on: ubuntu-latest
+
+    if: |
+      (
+        github.event_name == 'workflow_dispatch' &&
+        (
+          inputs.app == 'flutter' ||
+          inputs.app == 'both'
+        )
+      )
+      ||
+      (
+        github.event_name != 'workflow_dispatch' &&
+        needs.changes.outputs.flutter == 'true'
+      )
+
+    defaults:
+      run:
+        working-directory: flutter_app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build Release APK
+        run: flutter build apk --release
+
+      - name: Upload Flutter APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-apk-${{ github.run_number }}
+          path: flutter_app/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
