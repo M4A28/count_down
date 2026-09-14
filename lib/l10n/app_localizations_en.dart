@@ -256,6 +256,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get motivational90 => 'So close! Just 10% left! ⭐';
 
   @override
+  String get motivational100 => 'Congratulations! You made it! 🎉';
+
+  @override
   String get backup => 'Backup & Restore';
 
   @override

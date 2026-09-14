@@ -61,7 +61,7 @@ class _CountdownDisplayState extends State<CountdownDisplay>
 
     if (widget.isExpired) {
       return Text(
-        l10n.eventArrived,
+        l10n.ago,
         style: TextStyle(
           fontSize: widget.isLarge ? 32 : 18,
           fontWeight: FontWeight.w700,

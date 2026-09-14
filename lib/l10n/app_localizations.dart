@@ -734,6 +734,8 @@ abstract class AppLocalizations {
   /// **'ago'**
   String get ago;
 
+  String? get motivational100 => null;
+
   /// No description provided for @minutesBefore.
   ///
   /// In en, this message translates to:

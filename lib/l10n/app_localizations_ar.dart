@@ -255,6 +255,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get motivational90 => 'قريب جداً! بقي 10% فقط! ⭐';
 
   @override
+  String get motivational100 => 'تهانينا! لقد وصلت! 🎉';
+
+  @override
   String get backup => 'النسخ الاحتياطي والاستعادة';
 
   @override
