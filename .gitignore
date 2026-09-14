@@ -3,19 +3,25 @@
 *.log
 *.pyc
 *.swp
+*.jks
 .DS_Store
 .atom/
 .build/
 .buildlog/
 .history
 .svn/
+key.properties
 .swiftpm/
 migrate_working_dir/
-
+android/key.properties
+android/keystore/
+*.jks
+*.keystore
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
+
 .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
