@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
             floating: true,
             snap: true,
             pinned: true,
-            expandedHeight: _isSearching ? 70 : 120,
+            expandedHeight: _isSearching ? 120 : 140,
             title: _isSearching
                 ? _buildSearchField(l10n, theme)
                 : Text(l10n.appTitle),

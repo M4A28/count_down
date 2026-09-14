@@ -25,163 +25,164 @@ class SettingsScreen extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 600),
           child: Consumer<SettingsProvider>(
-        builder: (context, settings, _) {
-          return ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              // Language
-              _sectionCard(
-                theme: theme,
-                icon: Icons.language_rounded,
-                title: l10n.language,
-                child: Row(
-                  children: [
-                    _langChip(context, settings, 'ar', l10n.arabic),
-                    const SizedBox(width: 8),
-                    _langChip(context, settings, 'en', l10n.english),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Theme
-              _sectionCard(
-                theme: theme,
-                icon: Icons.palette_rounded,
-                title: l10n.theme,
-                child: Row(
-                  children: [
-                    _themeChip(
-                      context,
-                      settings,
-                      0,
-                      l10n.systemTheme,
-                      Icons.brightness_auto_rounded,
+            builder: (context, settings, _) {
+              return ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  // Language
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.language_rounded,
+                    title: l10n.language,
+                    child: Row(
+                      children: [
+                        _langChip(context, settings, 'ar', l10n.arabic),
+                        const SizedBox(width: 8),
+                        _langChip(context, settings, 'en', l10n.english),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    _themeChip(
-                      context,
-                      settings,
-                      1,
-                      l10n.lightTheme,
-                      Icons.light_mode_rounded,
-                    ),
-                    const SizedBox(width: 8),
-                    _themeChip(
-                      context,
-                      settings,
-                      2,
-                      l10n.darkTheme,
-                      Icons.dark_mode_rounded,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
+                  ),
+                  const SizedBox(height: 12),
 
-              // Color picker
-              _sectionCard(
-                theme: theme,
-                icon: Icons.color_lens_rounded,
-                title: l10n.backgroundColor,
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final c in _colors) _colorDot(context, settings, c),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Quiet time
-              _sectionCard(
-                theme: theme,
-                icon: Icons.do_not_disturb_on_rounded,
-                title: l10n.quietTime,
-                subtitle: l10n.quietTimeDesc,
-                child: Row(
-                  children: [
-                    Text(
-                      '${l10n.from}: ${_minutesToTime(settings.settings.quietTimeStart)}',
+                  // Theme
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.palette_rounded,
+                    title: l10n.theme,
+                    child: Row(
+                      children: [
+                        _themeChip(
+                          context,
+                          settings,
+                          0,
+                          l10n.systemTheme,
+                          Icons.brightness_auto_rounded,
+                        ),
+                        const SizedBox(width: 8),
+                        _themeChip(
+                          context,
+                          settings,
+                          1,
+                          l10n.lightTheme,
+                          Icons.light_mode_rounded,
+                        ),
+                        const SizedBox(width: 8),
+                        _themeChip(
+                          context,
+                          settings,
+                          2,
+                          l10n.darkTheme,
+                          Icons.dark_mode_rounded,
+                        ),
+                      ],
                     ),
-                    const Spacer(),
-                    Text(
-                      '${l10n.to}: ${_minutesToTime(settings.settings.quietTimeEnd)}',
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Color picker
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.color_lens_rounded,
+                    title: l10n.backgroundColor,
+                    child: Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        for (final c in _colors)
+                          _colorDot(context, settings, c),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
+                  ),
+                  const SizedBox(height: 12),
 
-              // Weekly reminder
-              _sectionCard(
-                theme: theme,
-                icon: Icons.calendar_view_week_rounded,
-                title: l10n.weeklyReminder,
-                subtitle: l10n.weeklyReminderDesc,
-                child: Switch(
-                  value: settings.settings.weeklyReminderEnabled,
-                  onChanged: (v) => settings.setWeeklyReminder(v),
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Backup
-              _sectionCard(
-                theme: theme,
-                icon: Icons.backup_rounded,
-                title: l10n.backup,
-                child: Column(
-                  children: [
-                    _actionTile(
-                      Icons.upload_rounded,
-                      l10n.createBackup,
-                      () => _createBackup(context, l10n),
+                  // Quiet time
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.do_not_disturb_on_rounded,
+                    title: l10n.quietTime,
+                    subtitle: l10n.quietTimeDesc,
+                    child: Row(
+                      children: [
+                        Text(
+                          '${l10n.from}: ${_minutesToTime(settings.settings.quietTimeStart)}',
+                        ),
+                        const Spacer(),
+                        Text(
+                          '${l10n.to}: ${_minutesToTime(settings.settings.quietTimeEnd)}',
+                        ),
+                      ],
                     ),
-                    _actionTile(
-                      Icons.download_rounded,
-                      l10n.restoreBackup,
-                      () => _restoreBackup(context, l10n),
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Weekly reminder
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.calendar_view_week_rounded,
+                    title: l10n.weeklyReminder,
+                    subtitle: l10n.weeklyReminderDesc,
+                    child: Switch(
+                      value: settings.settings.weeklyReminderEnabled,
+                      onChanged: (v) => settings.setWeeklyReminder(v),
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
+                  ),
+                  const SizedBox(height: 12),
 
-              // Export CSV
-              _sectionCard(
-                theme: theme,
-                icon: Icons.table_chart_rounded,
-                title: l10n.exportCsv,
-                child: _actionTile(
-                  Icons.file_download_rounded,
-                  l10n.exportCsv,
-                  () => _exportCsv(context, l10n),
-                ),
-              ),
-              const SizedBox(height: 12),
+                  // Backup
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.backup_rounded,
+                    title: l10n.backup,
+                    child: Column(
+                      children: [
+                        _actionTile(
+                          Icons.upload_rounded,
+                          l10n.createBackup,
+                          () => _createBackup(context, l10n),
+                        ),
+                        _actionTile(
+                          Icons.download_rounded,
+                          l10n.restoreBackup,
+                          () => _restoreBackup(context, l10n),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
 
-              // Reset
-              _sectionCard(
-                theme: theme,
-                icon: Icons.restart_alt_rounded,
-                title: l10n.resetApp,
-                iconColor: Colors.red,
-                child: _actionTile(
-                  Icons.delete_forever_rounded,
-                  l10n.resetApp,
-                  () => _resetApp(context, l10n),
-                  color: Colors.red,
-                ),
-              ),
-              const SizedBox(height: 40),
-            ],
-          );
-        },
+                  // Export CSV
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.table_chart_rounded,
+                    title: l10n.exportCsv,
+                    child: _actionTile(
+                      Icons.file_download_rounded,
+                      l10n.exportCsv,
+                      () => _exportCsv(context, l10n),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Reset
+                  _sectionCard(
+                    theme: theme,
+                    icon: Icons.restart_alt_rounded,
+                    title: l10n.resetApp,
+                    iconColor: Colors.red,
+                    child: _actionTile(
+                      Icons.delete_forever_rounded,
+                      l10n.resetApp,
+                      () => _resetApp(context, l10n),
+                      color: Colors.red,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+              );
+            },
+          ),
+        ),
       ),
-    ),
-  ),
     );
   }
 
@@ -323,16 +324,30 @@ class SettingsScreen extends StatelessWidget {
   }
 
   static const _colors = [
-    0xFF6C63FF,
-    0xFFFF6584,
-    0xFF00D2FF,
-    0xFF667EEA,
-    0xFF1B5E20,
-    0xFFFF9800,
-    0xFFE91E63,
-    0xFF00BCD4,
-    0xFF9C27B0,
-    0xFF795548,
+    // ألوان أساسية إضافية
+    0xFFF44336, // أحمر
+    0xFF2196F3, // أزرق
+    0xFF4CAF50, // أخضر
+    0xFFFFEB3B, // أصفر
+    0xFF009688, // تركوازي داكن
+    0xFF673AB7, // بنفسجي غامق
+    // ألوان نابضة (Accent Colors)
+    0xFF00E676, // أخضر نابض
+    0xFF2979FF, // أزرق نابض
+    0xFFF50057, // وردي حاد
+    0xFFFF3D00, // برتقالي حاد
+    0xFFD500F9, // بنفسجي فوشيا
+    0xFF00E5FF, // سماوي نابض
+    // ألوان دافئة
+    0xFFFFC107, // عنبري
+    0xFFFF5722, // برتقالي محمر
+    0xFF8BC34A, // أخضر ليموني
+    0xFF3F51B5, // نيلي
+    // ألوان هادئة / فاتحة
+    0xFF26C6DA, // سماوي فاتح
+    0xFFAB47BC, // بنفسجي فاتح
+    0xFF5C6BC0, // أزرق بنفسجي هادئ
+    0xFFFF7043, // مرجاني
   ];
 
   Widget _colorDot(BuildContext ctx, SettingsProvider s, int color) {

@@ -24,7 +24,6 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         foregroundColor: colorScheme.onSurface,
         titleTextStyle: GoogleFonts.cairo(
-
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: colorScheme.onSurface,
@@ -57,7 +56,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 16,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -65,7 +67,9 @@ class AppTheme {
           foregroundColor: Colors.white,
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           textStyle: GoogleFonts.cairo(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -104,7 +108,6 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         foregroundColor: colorScheme.onSurface,
         titleTextStyle: GoogleFonts.cairo(
-
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: colorScheme.onSurface,
@@ -137,7 +140,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: primary, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 16,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -145,7 +151,9 @@ class AppTheme {
           foregroundColor: Colors.white,
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           textStyle: GoogleFonts.cairo(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -188,14 +196,19 @@ class PresetTheme {
 
   static const List<PresetTheme> presets = [
     PresetTheme(
-      id: 'birthday',
-      nameEn: 'Birthday',
-      nameAr: 'عيد ميلاد',
-      primaryColor: Color(0xFFFF6B9D),
-      secondaryColor: Color(0xFFFFC75F),
-      icon: Icons.cake_rounded,
-      gradientColors: [Color(0xFFFF6B9D), Color(0xFFC850C0), Color(0xFFFFC75F)],
+      id: 'date',
+      nameEn: 'Date',
+      nameAr: 'موعد',
+      primaryColor: Color.fromARGB(255, 232, 183, 227),
+      secondaryColor: Color.fromARGB(255, 178, 11, 184),
+      icon: Icons.favorite_rounded,
+      gradientColors: [
+        Color.fromARGB(255, 229, 183, 232),
+        Color.fromARGB(255, 212, 116, 212),
+        Color.fromARGB(255, 184, 11, 138),
+      ],
     ),
+
     PresetTheme(
       id: 'wedding',
       nameEn: 'Wedding',
