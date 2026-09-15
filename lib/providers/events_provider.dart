@@ -50,15 +50,11 @@ class EventsProvider extends ChangeNotifier {
 
   Future<void> addEvent(EventModel event) async {
     await HiveService.saveEvent(event);
-    await NotificationService().scheduleEventNotifications(
-        event, HiveService.getRemindersForEvent(event.id));
     loadEvents();
   }
 
   Future<void> updateEvent(EventModel event) async {
     await HiveService.saveEvent(event);
-    await NotificationService().scheduleEventNotifications(
-        event, HiveService.getRemindersForEvent(event.id));
     loadEvents();
   }
 

@@ -20,9 +20,6 @@ void main() async {
   );
 
   runApp(const CountdownApp());
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    NotificationService().requestPermissions();
-  });
 }
 
 class CountdownApp extends StatelessWidget {

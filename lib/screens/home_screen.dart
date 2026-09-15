@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:count_down/l10n/app_localizations.dart';
 import '../providers/events_provider.dart';
+import '../services/notification_service.dart';
 import '../widgets/event_card.dart';
 import 'add_edit_event_screen.dart';
 import 'event_detail_screen.dart';
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen>
     _tabController = TabController(length: 2, vsync: this);
     // Auto-archive and handle recurrence on launch
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      NotificationService().requestPermissions();
       final provider = context.read<EventsProvider>();
       provider.handleRecurringEvents();
       provider.autoArchiveExpired();

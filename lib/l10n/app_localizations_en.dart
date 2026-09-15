@@ -66,8 +66,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteConfirmTitle => 'Delete Event';
 
   @override
-  String get deleteConfirmMessage =>
-      'Are you sure you want to delete this event?';
+  String get deleteConfirmMessage => 'Are you sure you want to delete this event?';
 
   @override
   String get archive => 'Archive';
@@ -256,7 +255,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get motivational90 => 'So close! Just 10% left! ⭐';
 
   @override
-  String get motivational100 => 'Congratulations! You made it! 🎉';
+  String get motivational100 => 'Done! 🎉';
 
   @override
   String get backup => 'Backup & Restore';
@@ -292,8 +291,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resetConfirmTitle => 'Reset App';
 
   @override
-  String get resetConfirmMessage =>
-      'This will delete ALL events and reset all settings. This action cannot be undone.';
+  String get resetConfirmMessage => 'This will delete ALL events and reset all settings. This action cannot be undone.';
 
   @override
   String get resetSuccess => 'App has been reset';
@@ -344,5 +342,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String daysBefore(Object count) {
     return '$count days before';
+  }
+
+  @override
+  String get eventAddedSuccess => 'Event added successfully! 🎉';
+
+  @override
+  String eventAddedNotification(Object title) {
+    return 'Countdown started for $title';
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -26,7 +27,7 @@ class NotificationService {
     tz.setLocalLocation(tz.getLocation(timeZoneName));
 
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/launcher_icon');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
@@ -116,16 +117,20 @@ class NotificationService {
             : '${event.title} is coming up in $timeLabel!';
       }
 
-      await _notificationsPlugin.zonedSchedule(
-        notificationId,
-        title,
-        body,
-        tzScheduleTime,
-        _notificationDetails(),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-      );
+      try {
+        await _notificationsPlugin.zonedSchedule(
+          notificationId,
+          title,
+          body,
+          tzScheduleTime,
+          _notificationDetails(),
+          androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
+        );
+      } catch (e) {
+        debugPrint('Error scheduling notification: $e');
+      }
     }
   }
 
@@ -134,8 +139,38 @@ class NotificationService {
     List<ReminderModel> reminders,
   ) async {
     for (final reminder in reminders) {
-      final notificationId = reminder.id.hashCode;
+      final notificationId = _stableId(reminder.id);
       await _notificationsPlugin.cancel(notificationId);
+    }
+  }
+
+  /// Shows an immediate notification (e.g. when a new event is added)
+  Future<void> showInstantNotification({
+    required String title,
+    required String body,
+  }) async {
+    const details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'countdown_instant_channel',
+        'Event Confirmations',
+        channelDescription: 'Instant notifications when events are added',
+        importance: Importance.high,
+        priority: Priority.high,
+        autoCancel: true,
+      ),
+      iOS: DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
+    );
+
+    // Use current timestamp as unique ID for instant notifications
+    final id = DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF;
+    try {
+      await _notificationsPlugin.show(id, title, body, details);
+    } catch (e) {
+      debugPrint('Error showing instant notification: $e');
     }
   }
 

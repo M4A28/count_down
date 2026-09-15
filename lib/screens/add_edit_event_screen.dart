@@ -521,6 +521,36 @@ class _AddEditEventScreenState extends State<AddEditEventScreen> {
         ),
       );
     }
+
+    // Show instant notification + SnackBar for new events
+    if (!_isEditing && mounted) {
+      final l10n = AppLocalizations.of(context)!;
+      final eventTitle = _titleController.text.trim();
+
+      // System notification
+      await NotificationService().showInstantNotification(
+        title: l10n.eventAddedSuccess,
+        body: l10n.eventAddedNotification(eventTitle),
+      );
+
+      // In-app SnackBar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.check_circle_rounded, color: Colors.white),
+              const SizedBox(width: 12),
+              Expanded(child: Text(l10n.eventAddedSuccess)),
+            ],
+          ),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+
     if (mounted) Navigator.pop(context);
   }
 }

@@ -255,7 +255,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get motivational90 => 'قريب جداً! بقي 10% فقط! ⭐';
 
   @override
-  String get motivational100 => 'تهانينا! لقد وصلت! 🎉';
+  String get motivational100 => 'تم الانجاز! 🎉';
 
   @override
   String get backup => 'النسخ الاحتياطي والاستعادة';
@@ -291,8 +291,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resetConfirmTitle => 'إعادة تعيين التطبيق';
 
   @override
-  String get resetConfirmMessage =>
-      'سيتم حذف جميع الأحداث وإعادة ضبط الإعدادات. لا يمكن التراجع عن هذا الإجراء.';
+  String get resetConfirmMessage => 'سيتم حذف جميع الأحداث وإعادة ضبط الإعدادات. لا يمكن التراجع عن هذا الإجراء.';
 
   @override
   String get resetSuccess => 'تمت إعادة تعيين التطبيق';
@@ -343,5 +342,13 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String daysBefore(Object count) {
     return 'قبل $count يوم';
+  }
+
+  @override
+  String get eventAddedSuccess => 'تمت إضافة الحدث بنجاح! 🎉';
+
+  @override
+  String eventAddedNotification(Object title) {
+    return 'بدأ العد التنازلي لـ $title';
   }
 }

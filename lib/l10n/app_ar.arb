@@ -112,5 +112,8 @@
   "hoursBefore": "قبل {count} ساعة",
   "@hoursBefore": { "placeholders": { "count": {} } },
   "daysBefore": "قبل {count} يوم",
-  "@daysBefore": { "placeholders": { "count": {} } }
+  "@daysBefore": { "placeholders": { "count": {} } },
+  "eventAddedSuccess": "تمت إضافة الحدث بنجاح! 🎉",
+  "eventAddedNotification": "بدأ العد التنازلي لـ {title}",
+  "@eventAddedNotification": { "placeholders": { "title": {} } }
 }

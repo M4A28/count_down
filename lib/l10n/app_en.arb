@@ -112,5 +112,8 @@
   "hoursBefore": "{count} hours before",
   "@hoursBefore": { "placeholders": { "count": {} } },
   "daysBefore": "{count} days before",
-  "@daysBefore": { "placeholders": { "count": {} } }
+  "@daysBefore": { "placeholders": { "count": {} } },
+  "eventAddedSuccess": "Event added successfully! 🎉",
+  "eventAddedNotification": "Countdown started for {title}",
+  "@eventAddedNotification": { "placeholders": { "title": {} } }
 }
