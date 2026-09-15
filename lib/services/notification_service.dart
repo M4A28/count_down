@@ -175,7 +175,7 @@ class NotificationService {
   }
 
   Future<void> cancelAll() async {
-    await _notificationsPlugin.cancelAll();
+    ///await _notificationsPlugin.cancelAll();
   }
 
   String _getLocalizedTimeLabel(int minutes, bool isAr) {

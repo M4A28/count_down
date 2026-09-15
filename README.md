@@ -31,7 +31,7 @@ Countdown allows users to create multiple countdowns, track remaining time in re
 
   * Define a period during which notifications are suppressed.
   * Example:
-    `22:00 → 07:00`
+    `23:00 → 07:00`
   * Notifications resume according to the configured settings after quiet hours end.
 
 * 🎨 **Themes**
